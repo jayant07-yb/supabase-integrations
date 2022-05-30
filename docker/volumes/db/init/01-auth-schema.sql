@@ -16,7 +16,7 @@ CREATE TABLE auth.users (
 	confirmation_sent_at timestamptz NULL,
 	recovery_token varchar(255) NULL,
 	recovery_sent_at timestamptz NULL,
-	email_change_token varchar(255) NULL,
+	email_change_token_new varchar(255) NULL,
 	email_change varchar(255) NULL,
 	email_change_sent_at timestamptz NULL,
 	last_sign_in_at timestamptz NULL,
