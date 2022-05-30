@@ -1,4 +1,5 @@
 -- auth.users definition
+SET search_path TO auth;
 
 CREATE TABLE IF NOT EXISTS auth.users (
 	instance_id uuid NULL,
