@@ -27,8 +27,10 @@ CREATE TABLE IF NOT EXISTS auth.users (
 	phone_confirmed_at timestamptz NULL DEFAULT NULL,
 	phone_change VARCHAR(15) NULL DEFAULT '',
 	phone_change_token VARCHAR(255) NULL DEFAULT '',
-	phone_change_sent_at timestamptz NULL DEFAULT NULL;
+	phone_change_sent_at timestamptz NULL DEFAULT NULL
 );
+
+
 CREATE INDEX IF NOT EXISTS users_instance_id_email_idx ON auth.users USING btree (instance_id, email);
 CREATE INDEX IF NOT EXISTS users_instance_id_idx ON auth.users USING btree (instance_id);
 comment on table auth.users is 'Auth: Stores user login data within a secure schema.';
