@@ -20,7 +20,6 @@ services:
       PGRST_DB_USE_LEGACY_GUCS: "false"
       PGRST_DB_CHANNEL_ENABLED: "false" 
 
-
   db:
     image: yugabytedb/yugabyte:latest
     command:  bin/yugabyted start --daemon=false --initial_scripts_dir /docker-entrypoint-initdb.d
