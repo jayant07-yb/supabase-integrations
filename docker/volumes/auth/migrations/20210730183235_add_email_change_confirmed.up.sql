@@ -1,8 +1,8 @@
 -- adds email_change_confirmed
 
-ALTER TABLE auth.users
-ADD COLUMN IF NOT EXISTS email_change_token_current varchar(255) null DEFAULT '', 
-ADD COLUMN IF NOT EXISTS email_change_confirm_status smallint DEFAULT 0 CHECK (email_change_confirm_status >= 0 AND email_change_confirm_status <= 2);
+-- ALTER TABLE auth.users
+-- ADD COLUMN IF NOT EXISTS email_change_token_current varchar(255) null DEFAULT '', 
+-- ADD COLUMN IF NOT EXISTS email_change_confirm_status smallint DEFAULT 0 CHECK (email_change_confirm_status >= 0 AND email_change_confirm_status <= 2);
 
 --- DO $$
 --- BEGIN

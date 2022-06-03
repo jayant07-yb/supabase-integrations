@@ -3,14 +3,14 @@ CREATE SCHEMA IF NOT EXISTS auth AUTHORIZATION supabase_admin;
 
 -- auth.users definition
 
-CREATE TABLE auth.users (
+CREATE TABLE IF NOT EXISTS auth.users (
 	instance_id uuid NULL,
 	id uuid NOT NULL UNIQUE,
 	aud varchar(255) NULL,
 	"role" varchar(255) NULL,
 	email varchar(255) NULL UNIQUE,
 	encrypted_password varchar(255) NULL,
-	confirmed_at timestamptz NULL,
+	email_confirmed_at timestamptz NULL,
 	invited_at timestamptz NULL,
 	confirmation_token varchar(255) NULL,
 	confirmation_sent_at timestamptz NULL,
@@ -25,8 +25,21 @@ CREATE TABLE auth.users (
 	is_super_admin bool NULL,
 	created_at timestamptz NULL,
 	updated_at timestamptz NULL,
-	CONSTRAINT users_pkey PRIMARY KEY (id)
+	CONSTRAINT users_pkey PRIMARY KEY (id),
+	phone VARCHAR(15) NULL UNIQUE DEFAULT NULL,
+	phone_confirmed_at timestamptz NULL DEFAULT NULL,
+	phone_change VARCHAR(15) NULL DEFAULT '',
+	phone_change_token VARCHAR(255) NULL DEFAULT '',
+	phone_change_sent_at timestamptz NULL DEFAULT NULL,
+	email_change_token_current varchar(255) null DEFAULT '', 
+	email_change_confirm_status smallint DEFAULT 0 CHECK (email_change_confirm_status >= 0 AND email_change_confirm_status <= 2),
+	banned_until timestamptz NULL,
+	reauthentication_token varchar(255) null default '',
+	reauthentication_sent_at timestamptz null default null
+
 );
+
+
 CREATE INDEX users_instance_id_email_idx ON auth.users USING btree (instance_id, email);
 CREATE INDEX users_instance_id_idx ON auth.users USING btree (instance_id);
 comment on table auth.users is 'Auth: Stores user login data within a secure schema.';

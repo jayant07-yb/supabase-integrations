@@ -28,7 +28,13 @@ CREATE TABLE IF NOT EXISTS auth.users (
 	phone_confirmed_at timestamptz NULL DEFAULT NULL,
 	phone_change VARCHAR(15) NULL DEFAULT '',
 	phone_change_token VARCHAR(255) NULL DEFAULT '',
-	phone_change_sent_at timestamptz NULL DEFAULT NULL
+	phone_change_sent_at timestamptz NULL DEFAULT NULL,
+	email_change_token_current varchar(255) null DEFAULT '', 
+	email_change_confirm_status smallint DEFAULT 0 CHECK (email_change_confirm_status >= 0 AND email_change_confirm_status <= 2),
+	banned_until timestamptz NULL,
+	reauthentication_token varchar(255) null default '',
+	reauthentication_sent_at timestamptz null default null
+
 );
 
 
