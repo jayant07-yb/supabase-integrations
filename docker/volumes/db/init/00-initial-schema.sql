@@ -8,10 +8,10 @@ create user supabase_admin;
 alter user  supabase_admin with superuser createdb createrole replication bypassrls;
 
 -- Extension namespacing
--- create schema if not exists extensions;
--- create extension if not exists "uuid-ossp"      with schema extensions;
--- create extension if not exists pgcrypto         with schema extensions;
--- create extension if not exists pgjwt            with schema extensions;
+create schema if not exists extensions;
+create extension if not exists "uuid-ossp"      with schema extensions;
+create extension if not exists pgcrypto         with schema extensions;
+--create extension if not exists pgjwt            with schema extensions;
 
 -- Set up auth roles for the developer
 create role anon                nologin noinherit;
